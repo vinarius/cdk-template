@@ -1,0 +1,12 @@
+node_modules
+
+ios
+android
+
+package.json
+yarn.lock
+
+tsconfig.json
+.gitkeep
+.gitignore
+.prettierignore

@@ -1,0 +1,95 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "root": true,
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/eslint-recommended", "plugin:@typescript-eslint/recommended", "prettier"],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2018, // Allows for the parsing of modern ECMAScript features
+    "sourceType": "module" // Allows for the use of imports
+  },
+  "plugins": ["@typescript-eslint", "prettier", "import", "unused-imports"],
+  "rules": {
+    // Error
+    "quotes": ["error", "single", { "avoidEscape": true }],
+    "semi": ["error", "always"],
+    "eqeqeq": "warn",
+    "no-cond-assign": ["error", "always"],
+    "object-shorthand": "error",
+    "@typescript-eslint/no-inferrable-types": "error",
+    "unused-imports/no-unused-imports-ts": "error",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "vars": "all",
+        "args": "after-used",
+        "ignoreRestSiblings": false
+      }
+    ],
+    // this is for sorting WITHIN an import
+    "sort-imports": ["error", { "ignoreCase": true, "ignoreDeclarationSort": true }],
+    // this is for sorting imports
+    "import/order": [
+      "error",
+      {
+        "groups": [["external", "builtin"], "internal", ["sibling", "parent"], "index"],
+        "pathGroups": [
+          {
+            "pattern": "@(react|react-native)",
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "@src/**",
+            "group": "internal"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["internal", "react"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "caseInsensitive": true
+        }
+      }
+    ],
+    // Off
+    "init-declarations": "off",
+    "no-inline-comments": "off",
+    "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "no-unused-vars": "off",
+    "react/jsx-uses-react": 0,
+    "react/react-in-jsx-scope": 0
+  },
+  "ignorePatterns": [
+    "node_modules",
+    "dist",
+    "coverage",
+    "docs",
+    "scripts",
+    ".eslintrc.js",
+    "cdk.out",
+    "jest.config.js",
+    "android",
+    "ios",
+    "__tests__",
+    "__mocks__",
+    "app.json",
+    "package.json",
+    ".eslintrc",
+    "tsconfig.json"
+  ],
+  "overrides": [
+    {
+      "files": ["** /*.spec.ts", "!**/*.integration.spec.ts"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off" // Allows for dynamic module importing to test for env variable branch coverage
+      }
+    }
+  ]
+}

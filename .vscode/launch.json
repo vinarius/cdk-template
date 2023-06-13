@@ -1,0 +1,36 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Infrastructure",
+      "env": {},
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      // use ts-node to transpile TypeScript to JavaScript
+      "runtimeArgs": [
+        "-r",
+        "./node_modules/ts-node/register/transpile-only"
+      ],
+      // the file to launch. Typically, the entry point of the program.
+      "args": [
+        "${workspaceFolder}/infrastructure.ts"
+      ],
+      "runtimeExecutable": "/home/vinarius/.nvm/versions/node/v18.14.0/bin/node"
+    },
+    {
+      "name": "Launch Current TS File",
+      "type": "node",
+      "request": "launch",
+      "runtimeArgs": [
+        "-r",
+        "ts-node/register"
+      ],
+      "args": [
+        "${workspaceFolder}/${relativeFile}"
+      ]
+    }
+  ]
+}
